@@ -61,6 +61,100 @@
     </entry>
     
     <entry>
+      <title><![CDATA[IFASD 2019 Digest]]></title>
+      <url>http://smanist.github.io/2019/07/02/IFASD_2019_digest/</url>
+      <content type="html"><![CDATA[<p>What I found interesting.</p>
+<a id="more"></a>
+<p>IFASD stands for <a href="http://ifasd2019.utcdayton.com/" target="_blank" rel="noopener">The International Forum on Aeroelasticity and Structural Dynamics</a>. It was held during June 10-13 in Savannah, Georgia. The bracketed number is the paper number (if applicable).</p>
+<h1 id="aeroelastic-design-and-optimization">Aeroelastic Design and Optimization</h1>
+<h2 id="passive-aeroelastic-tailoring-of-high-aspect-ratio-wings">Passive aeroelastic tailoring of high aspect ratio wings</h2>
+<p>By Karen Taminger.</p>
+<p>Three approaches were highlighted that optimize the stiffness distribution of a wing to improve its aeroelastic performance:</p>
+<ol style="list-style-type: decimal">
+<li>Curvilinear Spars and Ribs (SpaRibs), e.g. <a href="https://doi.org/10.2514/1.C031336" target="_blank" rel="noopener">Locatelli2011</a>, <a href="https://doi.org/10.2514/1.J057892" target="_blank" rel="noopener">Zhao2019</a></li>
+<li><a href="http://gkennedy.gatech.edu/research-project/large-scale-topo/" target="_blank" rel="noopener">Structural topology optimization</a></li>
+<li><a href="https://www.sciencedirect.com/science/article/pii/S0889974618306340" target="_blank" rel="noopener">Tow-steered composite wings</a></li>
+</ol>
+<h2 id="sizing-and-topology-design-of-an-aeroelastic-wingbox-under-uncertainty">Sizing and topology design of an aeroelastic wingbox under uncertainty</h2>
+<p>By Bret K. Stanford (058)</p>
+<p>A neat work on optimization under uncertainty. A two-level approach is employed. On the higher level, a non-gradient approach is employed to explore different wingbox topologies. The sizing of the wingbox topology is done by a gradient approach on the lower level. Uncertainties are introduced to the safety factors for the stress and buckling constraints, and modelled using the non-intrusive polynomial chaos expansion method. The sobol indices are used to explain the results.</p>
+<h2 id="aeroelastic-prediction-workshop-no.-3">Aeroelastic prediction workshop, No. 3</h2>
+<p>This will be discussed separately.</p>
+<h1 id="reduced-order-modeling">Reduced Order Modeling</h1>
+<h2 id="self-adaptive-pod-based-rom-3d-aeroelastic-simulations">Self adaptive POD based ROM 3D aeroelastic simulations</h2>
+<p>By Ruben Moreno-Ramos (024)</p>
+<p>Switch between CFD and ROM solvers during the aeroelastic simulation based on an error estimation. The CFD stage is used to generate data that updates POD modes in the projection-based ROM.</p>
+<h2 id="model-order-reduction-for-coupled-nonlinear-aeroelastic-flight-mechanics-of-very-flexible-aircraft">Model order reduction for coupled nonlinear aeroelastic-flight mechanics of very flexible aircraft</h2>
+<p>By Carlos E.S. Cesnik (095)</p>
+<p>The goal is to reduce the coupled system of flight dynamics and aeroelastic model to a level that can be used for control-oriented applications for the flight envelope. This is achieved by combining the techniques of piecewise linear basis, local basis interpolation, and balanced truncation, where the composition of local basis is achieved using a weighted sum approach.</p>
+<h2 id="aeroelastic-loads-predictions-using-cfd-based-reduced-order-models">Aeroelastic loads predictions using CFD-based reduced order models</h2>
+<p>By Philipp Bekemeyer (105)</p>
+<p>An interesting POD approach is used. The snapshots for POD are not only the aerodynamic loading, but concatenated vectors of aerodynamic loading and structural displacements. This approach requires very few samples and handles the static aeroelastic trimming problem well. The code implementation is based on the <a href="http://www.helmholtz-analytics.de/helmholtz_analytics/EN/Software/_node.html" target="_blank" rel="noopener">SMARTy toolbox</a>. A noteworthy method in SMARTy is the <a href="https://www.tandfonline.com/doi/full/10.1080/10618562.2014.918695" target="_blank" rel="noopener">Isomap with interpolation</a> approach.</p>
+<h2 id="modal-rotations-a-modal-based-method-for-large-structural-deformations">Modal rotations: A modal-based method for large structural deformations</h2>
+<p>By Ariel Drachinsky (135)</p>
+<p>A modal rotation method (MRM) is developed for the static analysis of slender structures accounting for large deformations. The modes are obtained from linear modal analysis as usual. However, the modes are not defined by displacements, but by curvatures. The curvature-based formulation enables a linearized evaluation of the bending rotation change based on nonlinear kinematics.</p>
+<h2 id="reduced-order-time-spectral-model-for-the-ale-formulation-of-the-compressible-navier-stokes-equations">Reduced order time spectral model for the ALE formulation of the compressible Navier-Stokes equations</h2>
+<p>By Fabrizio Di Donfrancesco (134)</p>
+<p>The time spectral equations are projected on to a set of POD basis. However, the issue is that generating the basis requires the unsteady simulation, but the purpose of time spectral method is usually to avoid the computationally expensive unsteady simulation.</p>
+<h1 id="flutter-analysis">Flutter Analysis</h1>
+<h2 id="flutter-sensitivity-analysis-for-wing-planform-optimization">Flutter sensitivity analysis for wing planform optimization</h2>
+<p>By Francesco Torrigiani (029)</p>
+<p>The unsteady aerodynamic analysis is carried out with the boundary element method by <a href="https://ntrs.nasa.gov/search.jsp?R=19750004821" target="_blank" rel="noopener">Morino</a>, which accounts for generic 3D body shapes.</p>
+<h2 id="analysis-of-light-dynamic-stall-using-dynamic-mode-decomposition">Analysis of light dynamic stall using dynamic mode decomposition</h2>
+<p>By Wrik Mallik (036). An application of DMD.</p>
+<h2 id="a-state-space-model-for-loads-analysis-based-on-tangential-interpolation">A state-space model for loads analysis based on tangential interpolation</h2>
+<p>By David Martin (066)</p>
+<p>The <a href="https://epubs.siam.org/doi/book/10.1137/1.9780898718713" target="_blank" rel="noopener">Loewner rational interpolation</a> is employed to develop a state-space model for the aerodynamics that</p>
+<ol style="list-style-type: decimal">
+<li>Has complex poles - so that it works for transonic flow.</li>
+<li>Does not need Hankel metrix for more efficient computation.</li>
+<li>Works for delayed input (e.g.&#xA0;gust) and singularity (e.g.&#xA0;rigid modes that introduces infinite eigenvalues).</li>
+<li>Describes distributed aerodynamic loading.</li>
+</ol>
+<h2 id="a-new-flutter-prediction-algorithm-to-avoid-p-k-method-shortcomings">A new flutter prediction algorithm to avoid p-k method shortcomings</h2>
+<p>By Ludovic Colo (072)</p>
+<p>For a nonlinear eigenvalue problem like flutter analysis, the conventional p-k method may fail when the eigen modes merge. This study develops a new block Newton algorithm based on the invariant pairs theory (e.g. <a href="https://onlinelibrary.wiley.com/doi/abs/10.1002/gamm.201490007" target="_blank" rel="noopener">here</a> and <a href="https://epubs.siam.org/doi/abs/10.1137/120885644?journalCode=sjmael" target="_blank" rel="noopener">here</a>). Dassault Aviation has systematically employed a hybrid p-k and block Newton methods for automated, robust, and efficient flutter analysis.</p>
+<h2 id="structural-damping-models-for-passive-aeroelastic-control">Structural damping models for passive aeroelastic control</h2>
+<p>By Marco Eugeni (085)</p>
+<p>Three damping models suitable for finite-element-based aeroelastic analysis are compared: the viscous model, the hysteretic model, and a <a href="https://www.sciencedirect.com/science/article/pii/S0888327018307982" target="_blank" rel="noopener">generalized Biot model</a>.</p>
+<h2 id="mechanisms-of-transonic-single-degree-of-freedom-flutter-of-a-laminar-airfoil">Mechanisms of transonic single degree of freedom flutter of a laminar airfoil</h2>
+<p>By Marc Braune (132)</p>
+<p>An energy transfer analysis is used to connect the effects of boundary layer transition, shock movement, and shock-boundary layer interaction to the aeroelastic instability and the LCO amplitude. It appears that the LCO is not due to a pure 1-DOF flutter mechanism, but introduced by the combination of the bending and heave motion.</p>
+<h2 id="flutter-mechanisms-characterization-using-distributed-aeroelastic-energy-analysis">Flutter mechanisms characterization using distributed aeroelastic energy analysis</h2>
+<p>By Michael Iovnovich (016)</p>
+<p>The goal is to systematically classify and understand the flutter mechanisms of an aircraft with many jet store configurations. The concept of power per flutter cycle (PPC) is introduced and the PPC distribution indicates a quantitative approach to identifying the flutter mechanisms.</p>
+<h1 id="panel-flutter">Panel Flutter</h1>
+<h2 id="flutter-and-limit-cycle-oscillations-of-a-cantilevered-plate-in-supersonic.hypersonic-flow">Flutter and limit cycle oscillations of a cantilevered plate in supersonic.hypersonic flow</h2>
+<p>By Kevin A. McHugh (017)</p>
+<p>Extended the piston theory to account for the large slope effect due to the cantilevered configuration. However, the boundary layer effect is not included. The plan is to correlate the theoretical results with experiments.</p>
+<h2 id="computational-study-for-the-design-of-a-hypersonic-panel-flutter-experiment">Computational study for the design of a hypersonic panel flutter experiment</h2>
+<p>By Maxim Freydin (138)</p>
+<p>A theoretical analysis of clamped panel flutter response, including the geometrical nonlinearity, non-ideally clamped boundary stiffness, distributed static pressure differential across the panel, and a temperature differential between the panel and its support. Flutter and LCO predictions are done by a linear eigenvalue method and direct time-marching solution in modal coordinates. Experiments are panned in the University of Southern Queensland. The panel is extremely thin, around 0.1 mm, and the experiment will run for approximately 200 ms.</p>
+<h1 id="aerospace-systems">Aerospace Systems</h1>
+<h2 id="aeroelastic-role-in-the-road-to-a-fully-automated-refuelling-system">Aeroelastic role in the road to a fully automated refuelling system</h2>
+<p>By J. Barrera Rodr&#xED;guez (048)</p>
+<p>This is an interesting paper describing the development of a <em>real</em> Automated Air-to-Air Refuelling (A3R) system in the industry. The system consists of an extensible mast with a &#x201C;ruddervator&#x201D; connected to the aircraft with a roll/pitch joint. Modeling difficulties include the elastic response of the mast, variable mass and the boundary conditions (free or attached to another aircraft). The structural response of the mast is modelled using the finite element method and the aerodynamic force of the ruddervator is modelled using the doublet lattice method. The other unmodelled effects, which may be nonlinear, include gravity, drag of mast, etc. These effects are identified from the flight data and incorporated into the model via a convolutional nonlinear forcing term.</p>
+<h2 id="flight-mechanical-analysis-and-test-of-unmanned-multi-body-aircraft">Flight mechanical analysis and test of unmanned multi-body aircraft</h2>
+<p>By An Chao (083)</p>
+<p>Learned about the concept of Multi-body Aircraft (MBA) as a alternative to the aircraft with ultra-high aspect ratio. The MBA configuration alleviates the wing loading and its modeling does not require the nonlinear aeroelastic analysis. However, the MBA has its own instability modes that need to be mitigated.</p>
+]]></content>
+      
+        <categories>
+            
+            <category> digest </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> conference </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Trying Out RNN Regressor - Part I]]></title>
       <url>http://smanist.github.io/2019/07/01/Trying-out-RNN-regressor-part-1/</url>
       <content type="html"><![CDATA[<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css"><p>I am almost new to this field. Still learning.</p>
@@ -2368,9 +2462,9 @@ f({\mathbf{x}}) \sim {\mathcal{GP}}({\mathbf{h}}({\mathbf{x}})^T{\mathbf{b}},k({
         
         <tags>
             
-            <tag> shell </tag>
-            
             <tag> chrome </tag>
+            
+            <tag> shell </tag>
             
         </tags>
         
@@ -2629,9 +2723,9 @@ f({\mathbf{x}}) \sim {\mathcal{GP}}({\mathbf{h}}({\mathbf{x}})^T{\mathbf{b}},k({
         
         <tags>
             
-            <tag> google </tag>
-            
             <tag> shell </tag>
+            
+            <tag> google </tag>
             
         </tags>
         
