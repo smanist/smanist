@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>Notes on Julia | Orpheus</title>
+  <meta name="description" content="This is description" />
+  <meta name="keywords" content="keyword 1,keyword 2" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" href="/images/favicon.ico">
+  <link rel="alternate" href="/atom.xml" title="Orpheus">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="“Looks like Python, feels like lisp, runs like C.”">
+<meta name="keywords" content="julia">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Notes on Julia">
+<meta property="og:url" content="http://smanist.github.io/2018/12/21/Notes-on-Julia/index.html">
+<meta property="og:site_name" content="Orpheus">
+<meta property="og:description" content="“Looks like Python, feels like lisp, runs like C.”">
+<meta property="og:updated_time" content="2018-12-21T16:33:49.826Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Notes on Julia">
+<meta name="twitter:description" content="“Looks like Python, feels like lisp, runs like C.”">
+    
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata|Titillium+Web" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+  <link href='//cdn.bootcss.com/node-waves/0.7.5/waves.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="/style.css">
+  
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+</head>
+
+<body>
+  <div id="loading-bar-wrapper">
+  <div id="loading-bar"></div>
+</div>
+
+
+  <script>setLoadingBarProgress(20)</script> 
+  <header class="l_header">
+		<div class="wrapper container">
+			<a class="logo flat-box" href='/' >
+				Orpheus
+			</a>
+			<div class='menu'>
+				<ul class='h-list'>
+					
+						<li>
+							<a class='flat-box nav-home' href='/'>
+								Home
+							</a>
+						</li>
+					
+						<li>
+							<a class='flat-box nav-archives' href='/archives'>
+								Archives
+							</a>
+						</li>
+					
+						<li>
+							<a class='flat-box nav-about' href='/about'>
+								About
+							</a>
+						</li>
+					
+				</ul>
+				<div class='underline'></div>
+			</div>
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="Search" />
+						<span class="icon icon-search"></span>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a href='javascript:void(0)'><span class="icon icon-search"></span></a></li>
+				
+				<li class='s-menu'><a href='javascript:void(0)'><span class="icon icon-menu"></span></a></li>
+			</ul>
+		</div>
+		<aside class="menu-phone">
+			<nav>
+				
+					<a href="/" class="nav-home nav">
+						Home
+					</a>
+				
+					<a href="/archives" class="nav-archives nav">
+						Archives
+					</a>
+				
+					<a href="/about" class="nav-about nav">
+						About
+					</a>
+				
+			</nav>
+		</aside>
+</header>
+
+    <script>setLoadingBarProgress(40);</script>
+  <div class="l_body">
+    <div class='container'>
+      <div class='l_main'>
+        <article id="post-Notes-on-Julia"
+  class="post white-box article-type-post"
+  itemscope itemprop="blogPost">
+	<section class='meta'>
+	<h2 class="title">
+  	<a href="/2018/12/21/Notes-on-Julia/">
+    	Notes on Julia
+    </a>
+  </h2>
+	<time>
+	  Dec 21, 2018
+	</time>
+	
+    
+    <div class='cats'>
+        <a href="/categories/coding/">coding</a>
+    </div>
+
+	</section>
+	
+		<section class="tog"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#overview"><span class="toc-number">2.</span> <span class="toc-text">Overview</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#two-language-problem"><span class="toc-number">2.1.</span> <span class="toc-text">Two-Language Problem</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#solution-by-julia"><span class="toc-number">2.2.</span> <span class="toc-text">Solution by Julia</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#key-features"><span class="toc-number">2.3.</span> <span class="toc-text">Key Features</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#learning-materials"><span class="toc-number">2.4.</span> <span class="toc-text">Learning materials</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#more-on-features"><span class="toc-number">3.</span> <span class="toc-text">More on Features</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#type-system"><span class="toc-number">3.1.</span> <span class="toc-text">Type System</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#type-hierarchy"><span class="toc-number">3.1.1.</span> <span class="toc-text">Type hierarchy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#conversion-promotion-and-annotation"><span class="toc-number">3.1.2.</span> <span class="toc-text">Conversion, promotion, and annotation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#composite-and-parametric-types"><span class="toc-number">3.1.3.</span> <span class="toc-text">Composite and parametric types</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#constructors"><span class="toc-number">3.1.4.</span> <span class="toc-text">Constructors</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#metaprogramming"><span class="toc-number">3.2.</span> <span class="toc-text">Metaprogramming</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#expressions"><span class="toc-number">3.2.1.</span> <span class="toc-text">Expressions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#macros"><span class="toc-number">3.2.2.</span> <span class="toc-text">Macros</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#notes-on-the-usage"><span class="toc-number">4.</span> <span class="toc-text">Notes on the Usage</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#general-behaviors-and-conventions"><span class="toc-number">4.1.</span> <span class="toc-text">General Behaviors and Conventions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#data-structures"><span class="toc-number">4.2.</span> <span class="toc-text">Data structures</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#strings"><span class="toc-number">4.2.1.</span> <span class="toc-text">Strings</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#arrays"><span class="toc-number">4.2.2.</span> <span class="toc-text">Arrays</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dictionaries-and-enumerations"><span class="toc-number">4.2.3.</span> <span class="toc-text">Dictionaries and enumerations</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tuples"><span class="toc-number">4.2.4.</span> <span class="toc-text">Tuples</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#control-flow"><span class="toc-number">4.3.</span> <span class="toc-text">Control flow</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#basic-blocks"><span class="toc-number">4.3.1.</span> <span class="toc-text">Basic Blocks</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#scopes"><span class="toc-number">4.3.2.</span> <span class="toc-text">Scopes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#taskscoroutines"><span class="toc-number">4.3.3.</span> <span class="toc-text">Tasks/Coroutines</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#functions"><span class="toc-number">4.4.</span> <span class="toc-text">Functions</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#advanced-topics"><span class="toc-number">5.</span> <span class="toc-text">Advanced Topics</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#calling-other-languages-from-julia"><span class="toc-number">5.1.</span> <span class="toc-text">Calling other languages from Julia</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#shell"><span class="toc-number">5.1.1.</span> <span class="toc-text">Shell</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#c-and-fortran"><span class="toc-number">5.1.2.</span> <span class="toc-text">C and Fortran</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#python"><span class="toc-number">5.1.3.</span> <span class="toc-text">Python</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#parallel-computing"><span class="toc-number">5.2.</span> <span class="toc-text">Parallel Computing</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#parallel-macro"><span class="toc-number">5.2.1.</span> <span class="toc-text">Parallel macro</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#distributed-array"><span class="toc-number">5.2.2.</span> <span class="toc-text">Distributed array</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#more-topics-for-later"><span class="toc-number">6.</span> <span class="toc-text">More Topics for Later</span></a></li></ol></section>
+	
+	<section class="article typo">
+  	<div class="article-entry" itemprop="articleBody">
+    	<p><a href="https://www.youtube.com/watch?v=8h8rQyEpiZA" target="_blank" rel="noopener">&#x201C;Looks like Python, feels like lisp, runs like C.&#x201D;</a></p>
+<a id="more"></a>
+<h1 id="introduction">Introduction</h1>
+<p>As discussed in the <a href="https://smanist.github.io/2018/11/19/Julia-For-Mushin/">previous article</a>, I plan to explore the capability of Julia in scientific computing, esp. in applications like computational mechanics and optimization. I have gotten even more attracted to Julia when I heard that it has <a href="https://www.hpcwire.com/off-the-wire/julia-joins-petaflop-club/" target="_blank" rel="noopener">joined the Petaflop Club</a>: achieved peak performance exceeding one petaflop per second on supercomputers. Julia appears to be the only &#x201C;high-level&#x201D; language in the Petaflop club - the others are C, C++ and Fortran.</p>
+<p>This article is a digest of the basics of Julia that I have learned recently. The syntax of Julia will not be discussed in detail, as it could be mastered by actaully writing the code - So there will not be many examples. Instead, in this article, I would focus more on the features and highlights of Julia. In addition, due to my background, I tend to highlight the similarities and differences between Julia and Python/C++.</p>
+<h1 id="overview">Overview</h1>
+<h2 id="two-language-problem">Two-Language Problem</h2>
+<p>One of the goals of Julia is to solve the two-language problem: one can <a href="https://thebottomline.as.ucsb.edu/2018/10/julia-a-solution-to-the-two-language-programming-problem" target="_blank" rel="noopener">either have a programming language that&#x2019;s easy to use, or fast.</a></p>
+<p>There are indeed some existing solutions, e.g.&#xA0;those from the Python ecosystem. In the standard <code>CPython</code> implementation, the Python code is <em>interpreted</em> as bytecodes that run on the virtual machine, which is of course slower than <em>compiled</em> machine code that runs on the actual machine. Three representative approaches to accelerate Python include <a href="https://pypy.org/" target="_blank" rel="noopener"><code>PyPy</code></a>, <a href="https://cython.org/" target="_blank" rel="noopener"><code>Cython</code></a>, and <a href="http://numba.pydata.org/" target="_blank" rel="noopener"><code>Numba</code></a>. PyPy is basically an implementation different from CPython using a <a href="https://en.wikipedia.org/wiki/Just-in-time_compilation" target="_blank" rel="noopener">just-in-time (JIT)</a> compiler. Cython generates C code from Python code - or wraps C libraries for Python <a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>. Numba compiles Python snippets in a JIT manner. I myself have mainly used Python with Cython-wrapped C++ library. So I am really using two languages to &#x201C;solve&#x201D; the two-language problem. The three approaches have been discussed and compared in <a href="https://www.quora.com/How-do-Cython-Numba-and-PyPy-compare-in-terms-of-performance-ease-of-use-and-restrictions" target="_blank" rel="noopener">this post</a>. These approaches are not perfect. To accelerate a given Python code, some extra work are involved, e.g.&#xA0;annotating the code using certain &#x201C;peculiar&#x201D; syntaxes.</p>
+<p>The two-language problem had been even more challenging when the Julia project started in 2009, since the Python ecosystem has not matured enough to solve the problem. As one of the developers discussed in <a href="https://discourse.julialang.org/t/julia-motivation-why-werent-numpy-scipy-numba-good-enough/2236" target="_blank" rel="noopener">this post</a>: The initial version of <code>Cython</code> was released in 2007; The first working verion of <code>PyPy</code> was released in 2007; <code>Numpy</code> was yet not mature at the time; <code>Numba</code> would not be released until 2012. <a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a></p>
+<h2 id="solution-by-julia">Solution by Julia</h2>
+<p>Julia is mainly written in Julia with some dependencies on C, Fortran, and assembly. However, in the core, there is a <a href="https://en.wikipedia.org/wiki/Scheme_(programming_language)" target="_blank" rel="noopener">Scheme</a> parser <code>FemtoLisp</code> and a <a href="https://en.wikipedia.org/wiki/LLVM" target="_blank" rel="noopener">LLVM</a> compiler in C++. They are responsible for gluing Julia and the underlying operating system together.</p>
+<p>The Julia solution to the two-language problem is best described by the quote at the beginning of this article:</p>
+<ol style="list-style-type: decimal">
+<li>Writes like Python: The user writes Julia like a high-level dynamic language.</li>
+<li>Feels like Lisp: The Julia code is parsed into <a href="https://en.wikipedia.org/wiki/Abstract_syntax_tree" target="_blank" rel="noopener">abstract syntax trees</a> (ASTs) using FemtoLisp (<code>lowered</code>, <code>typed</code>).</li>
+<li>Runs like C: The LLVM generates the <a href="https://en.wikipedia.org/wiki/Intermediate_representation" target="_blank" rel="noopener">intermediate representation</a> (IR) of the ASTs, which would run on the virtual machine (<code>llvm</code>), and compiles the IR into the native code optimized for the local machine (<code>native</code>) <a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a>.</li>
+</ol>
+<p>The user essentially only needs to care about writing their applications. The compiler takes care of the rest. Of course, the code would be faster if it is written with care taken for the parsing and compiling stages.</p>
+<h2 id="key-features">Key Features</h2>
+<p>As I understand, Julia as a <a href="https://en.wikipedia.org/wiki/Dynamic_programming_language" target="_blank" rel="noopener">dynamic programming language</a> is made distinct from the others by its <a href="https://en.wikipedia.org/wiki/Type_system" target="_blank" rel="noopener">type system</a> combined with <a href="https://en.wikipedia.org/wiki/Multiple_dispatch" target="_blank" rel="noopener">multiple dispatch</a>. Well, I am not a computer scientist, I could be wrong in this assertion and some of the concepts discussed in this section.</p>
+<p>Dynamic languages are usually considered &#x201C;typeless&#x201D;. However, more precisely speaking, types do exist, but what lacks is type declaration. The user cannot explicitly instruct the compiler to specify certain types for certain values. On the other hand, in static languages, type declaration is mandatory. And that is one reason why static languages are usually faster than dynamic languages, as some optimizations of the machine code can be done based on the types. Cython and Numba are like patches of partial type declaration for accelerating Python. Julia takes a step further, as it has the complete type system and the <em>type inference</em> mechanism. Like static language, all the values in Julia can be assigned a type by the user. Like dynamic language, not all values require a type - the most suitable type can be <em>inferred</em> by the compiler.</p>
+<p>Based on the type system, the multiple dispatch mechanism is enabled with <a href="https://en.wikipedia.org/wiki/Parametric_polymorphism" target="_blank" rel="noopener">parametric polymorphism</a>. In <a href="https://en.wikipedia.org/wiki/Polymorphism_(computer_science)" target="_blank" rel="noopener">polymorphism</a>, a single interface, or method, is provided to values of different types <a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a>. Typically, the polymorphic methods are stored in a <a href="https://en.wikipedia.org/wiki/Virtual_method_table" target="_blank" rel="noopener">virtual method table</a>, a.k.a. vtable. In the <em>run-time</em>, the specific method is chosen from the vtable. In single dispatch, the vtable is stored with the classes. The calling of a method can be written as <code>object.action(args)</code>, because the choice of polymorphic method is solely determined by the type of the calling object. In multiple dispatch, the vtable is stored with the method itself. The calling of a method should be better written as <code>action(objects, args)</code>, as is done in Julia, the choice of polymorphic method is determined by the types of all the arguments.</p>
+<p>Multiple dispatch has two advantages. First, it is the direct reason for the high performance of Julia. For each polymorphic method, specialized low-level code is generated with all possible optimizations under the host machine. In the run-time, the most suitable/optimized method is called from the vtable. Second, multiple dispatch provides greater flexibility and reusability, as a method is not bound to a type. For example, suppose there is an existing method for LU decomposition for matrices of <code>Float64</code>. To do LU decomposition of matrices of rationals, one only need to define the elementary arithmetic operations for rationals, and call the same LU method. However, in single dispatch languages, one will need to not only define the elementary arithmetic operations, but also <em>rewriting</em> the LU method using the new rational type.</p>
+<p>Besides the type system and multiple dispatch, another important feature of Julia is its <a href="https://en.wikipedia.org/wiki/Metaprogramming" target="_blank" rel="noopener">metaprogramming</a> capability: a program can be designed to read, generate, analyse or transform other programs, and even modify itself while running. The roles of code and data are more or less interchangeable. In Julia, everything is an expression that returns a value and an expression can take values and/or <em>expressions</em> as input. The metaprogramming capability directly stems from the lisp core of Julia, that enables the manipulation of the ASTs generated from the Julia code, e.g.&#xA0;using macros <a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a> - functions that acts on expressions. The metaprogramming capability allows the users to minimize the efforts and computational time for their applications.</p>
+<h2 id="learning-materials">Learning materials</h2>
+<p>The best learning material for Julia is probably its <a href="https://docs.julialang.org" target="_blank" rel="noopener">documentation</a>, which is always (expected to be) update-to-date, and contains both introductory and advanced topics. The official website also provides a <a href="https://julialang.org/learning/" target="_blank" rel="noopener">large list</a> of learning materials, including videos (e.g. <a href="https://www.youtube.com/watch?v=8h8rQyEpiZA" target="_blank" rel="noopener">this</a> and <a href="http://online.kitp.ucsb.edu/online/transturb17/gibson/rm/jwvideo.html" target="_blank" rel="noopener">this</a>), online documents, and books. Among these are two books that I recommend: (1) <em>Getting Started with Julia</em> by Ivo Balbaert, indeed good for getting started; (2) &#x201C;Julia High Performance&#x201D; by Avik Sengupta, a little advanced but very useful for beginners aiming for performant programs. Another book, &#x201C;Mastering Julia&#x201D; by Malcolm Sherrington, might be good for people who need immediate hands-on experiences. However, a notable issue is that, with the advent of the more stable 1.0 version, some of the syntaxes and claims in the books are outdated. So make sure to practice and verify everything read from the books.</p>
+<p>Another good source of learning materials are the Julia code itself. As one of the books has suggested, there are several interesting folders in Julia to look at:</p>
+<ol style="list-style-type: decimal">
+<li><code>base</code>: contains a great portion of the standard library and the coding style exemplary.</li>
+<li><code>test</code>: has some code that illustrates how to write test scripts and use the Base.Test system.</li>
+<li><code>examples</code>: gives Julia&#x2019;s take on some well-known old computing chestnuts.</li>
+</ol>
+<p>This article is mainly based on materials from <em>Getting Started with Julia</em> by Ivo Balbaert and the official documentation.</p>
+<h1 id="more-on-features">More on Features</h1>
+<h2 id="type-system">Type System</h2>
+<h3 id="type-hierarchy">Type hierarchy</h3>
+<p>Every value has a type and there are a lot of built-in types. These types are organized in tree, with the root, type <code>Any</code>. The types themselves are of type <code>DataType</code>. A type is either an abstract type or a concrete type. An abstract type can have a lot of children or subtypes but cannot be instantiated, while a concrete type is on the contrary. Essentially, an abstract type is only a name that groups multiple subtypes together, which works in a manner similar to <code>Union</code> that gives a type/alias to a user-specified group of types. Naturally, <code>Any</code> is the supertype of all types (including itself). The opposite of <code>Any</code> is a special type called <code>Union{}</code>, i.e.&#xA0;union of nothing. It is subtype of all other types (even the concrete ones). There is also a special type <code>Nothing</code>.</p>
+<p>Here, it is stressed again: In the context of multiple dispatch, a subtype do not inherit any methods from its supertype. This is on the contrary to the object-oriented thinking.</p>
+<h3 id="conversion-promotion-and-annotation">Conversion, promotion, and annotation</h3>
+<p>Variables of different types can be converted to each other, if the corresponding <code>convert</code> method exists. There is also a built-in system called automatic type promotion to promote arguments of functions so as to match those of the existing functions. This is a key device that facilitates the multi-dispatch mechanism. Additionally, the combination of type promotion and <code>Union</code> could bring some convenience to the user. The user can define one function using data types from a user-defined union and save the effort of defining multiple similar functions for each data type from the union.</p>
+<p>Variables can be associated to types using two operators for type annotation: <code>::</code> and <code>&lt;:</code>. Essentially, <code>var::T</code> asserts if the variable <code>var</code> is of type <code>T</code>. This is also used in the sense of a type declaration, but only in local scopes such as in functions. <code>var&lt;:T</code> asserts if the variable <code>var</code> is of the subtype of <code>T</code>. This can be used in, e.g.&#xA0;the restriction of types in composite types.</p>
+<h3 id="composite-and-parametric-types">Composite and parametric types</h3>
+<p>The composite types are the types composed of a set of named fields with an optional type annotation (by default <code>Any</code>). A composite type is similar to a struct in C. In fact, the keyword is <code>struct</code> too in Julia.</p>
+<p>Composite types declared with struct are immutable; they cannot be modified after construction. This design has some advantages, including efficiency in storage and memory allocation, thread safety, and readability. Nevertheless, the contents of a mutable field in an immutable type can be changed, because only the reference is stored. It could be a good practice to define immutable types without mutable fields. When necessary, mutable composite types can be declared with the keywords <code>mutable struct</code>.</p>
+<p>Composite types can be generalized via parametrization. A parametric type is conceptually similar to templates in C++ and creates a whole family of new possible concrete types. However, the new types are only compiled as needed at runtime. Finally, for better performance, always annotate the type of the fields in a composite type when possible.</p>
+<p>As a side note, to see whether the two objects x and y are identical, they must be compared with the <code>is</code> function, The <code>is(x, y)</code> function can also be written with the triple-equal operator as <code>x === y</code>. The addresses in memory are compared to check whether they point to the same memory location</p>
+<h3 id="constructors">Constructors</h3>
+<p>Constructors creates and initializes an instance of a type. There is always a default (inner) constructor that comes with a type, if not otherwise specified. One can, of course, define a specific inner constructor in the type declaration, which <em>overrides</em> the default one. The inner constructors are the only constructors that has access to a special locally existent function called <code>new</code> that creates an object of the declared type. Once a type is declared, there is no way to add more inner constructor methods. Instead, one can only add outer constructors, that are defined just like regular methods (due to multiple dispatch). The outer constructors, ultimately, rely on calling one of the inner constructors to complete the instantiation.</p>
+<p>Special inner constructors are needed in certain cases, e.g.&#xA0;when argument checking is necessary. A good practice is to combine outer constructors with a limited set of inner constructors.</p>
+<h2 id="metaprogramming">Metaprogramming</h2>
+<p>This is the part of Julia that feel like Lisp: &#x201C;code is data and data is code&#x201D;. Every piece of code is internally represented as an expression, <code>Expr</code>, which can be manipulated by other expressions. This characteristic of Julia, <a href="https://en.wikipedia.org/wiki/Homoiconicity" target="_blank" rel="noopener">homoiconicity</a>, enables the transformation and generation of the code. This is not unfamiliar, if one works with Lisp (e.g.&#xA0;in Emacs) and Mathematica.</p>
+<p>The homoiconicity facilitates the <a href="https://en.wikipedia.org/wiki/Reflection_(computer_programming)" target="_blank" rel="noopener">reflection</a> capability of Julia. The structure of a program and its types can be explored programmatically just like any other data. This means that a running program can dynamically discover its own properties. Reflection is indispensable for tools that need to inspect the internals of the code objects programmatically, such as debugging and profiling.</p>
+<h3 id="expressions">Expressions</h3>
+<p>The Julia code is parsed by FemtoLisp as an AST, a tree representation of the abstract syntactic structure of the source code. The nodes of AST are all of type <code>Expr</code>. A formal definition of the <code>Expr</code> type is <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">type Expr</div><div class="line">    head::Symbol</div><div class="line">    args::Array{Any,1}</div><div class="line">end</div></pre></td></tr></table></figure></p>
+<p>The <code>head</code> indicates the type of the expression, e.g. <code>:call</code> as a function call and <code>=</code> as assignment. The <code>args</code> is an array of <code>Symbol</code>s and (maybe) <code>Expr</code>s, which recursively represents the AST. One can get a formatted output of the AST of an expression using the <code>dump</code> function.</p>
+<p>Expressions can be built directly using the constructor for <code>Expr</code>. However, to make life easier, one can create expressions using the quote operator <code>:</code> that treats its argument as data instead of code. It means &#x201C;prevented evaluation&#x201D; in a sense. The quote preceding a symbol makes a <code>Symbol</code>, e.g <code>:sym</code>. The quote preceding a bracketed expression makes an <code>Expr</code>, e.g <code>:(1+2)</code>.</p>
+<p>A compound expression consists of multiple sub-expressions separated by <code>;</code>. The value of a compound expression is the value of the last sub-expression. For a larger compound expression, it is better to use the <code>quote-end</code> block instead of quote operator. Note that the evaluation of an expression is done in the global scope and the internal variables will be visible to the outside code.</p>
+<p>Writing expressions is made even simpler with the interpolation operator <code>$</code>. The interpolation is evaluated once an expression is constructed at parse time. This is unlike the quotation itself, which is evaluated by <code>eval</code> at runtime.</p>
+<h3 id="macros">Macros</h3>
+<p>Macros are like functions, but instead of values, they take expressions, symbols or literals as input arguments. The evaluation of a macro means the expansion of the input expression. This expansion occurs at parse time when the AST is being built. This is different from a function, which takes the input values and returns the computed values at run-time.</p>
+<p>A macro is hygenic, when it differentiates between the macro context and the calling context. The hygienity is important because the macros inject the code directly in the namespace in which they are called, which may clash with the existing methods in the same module. There are several rules for writing hygienic macros:</p>
+<ol style="list-style-type: decimal">
+<li>Declare the variables used in the macro as local, so as not to conflict with the outer variables.</li>
+<li>Use the escape function <code>esc</code> to make sure that an interpolated expression is not expanded, but instead is used literally.</li>
+<li>Don&#x2019;t call <code>eval</code> inside a macro.</li>
+</ol>
+<p>Note that escaping is similar to <code>Hold</code> in Mathematica. An expression wrapped in this manner is left alone by the macro expander and simply pasted into the output verbatim. Therefore it will be resolved when the macro is called, instead of when it is defined.</p>
+<h1 id="notes-on-the-usage">Notes on the Usage</h1>
+<p>This section highlights some basic functionalities of Julia.</p>
+<h2 id="general-behaviors-and-conventions">General Behaviors and Conventions</h2>
+<p>Julia behaves similarly to Python in many senses, e.g.&#xA0;all names are just aliases bound to values. However, there are differences. For example, in Julia, arrays are 1-indexed. Negative index is not supported and the last index is <code>end</code>. Refer to <a href="https://docs.julialang.org/en/v1/manual/noteworthy-differences/" target="_blank" rel="noopener">this</a> for more differences between Julia and other languages.</p>
+<p>Entities in Julia must start with a letter or an underscore <code>_</code>. Conventionally variable names consist of lowercase letters with long names separated by underscores rather than using camel case. Numbers can be separated by underscores for readability. It is a good practice to write constant variables in uppercase letters. The package names are kept upper camel case. <code>!</code> indicates a mutating function that modifies its the first argument.</p>
+<p>Julia does not have line-continuation operators. It will read until the expression is finished.</p>
+<p>Julia supports unicode, so that functions and variables can be named using special characters, e.g. <code>&#x2297;</code> instead of <code>*</code> for outer product, and <code>&#x3B1;</code> instead of <code>alpha</code> for a Greek symbol.</p>
+<h2 id="data-structures">Data structures</h2>
+<p>Concepts like strings, arrays, dictionaries, tuples, and sets all behave in a manner that is more or less similar to those in Python. Note that except string, all the rest are parametric types.</p>
+<h3 id="strings">Strings</h3>
+<p>Julia differentiates between single characters and strings. Strings can contain any number of characters and are specified using double quotes <code>&quot;</code> or triple double quotes <code>&quot;&quot;&quot;</code>. The character literals are specified using single quotes <code>&apos;</code>. <code>&quot;&quot;&quot;</code> is used (esp.) when there are double quotes in the string itself.</p>
+<p>The strings are <em>immutable</em>, which means that they cannot be altered once they have been defined</p>
+<p>Julia has an elegant string interpolation mechanism for constructing strings using the <code>$</code> operator (again). <code>$var</code> inside a string is replaced by the value of <code>var</code>, and <code>$(expr)</code> is replaced by the computed value of expression <code>expr</code>. The <code>@printf</code> macro takes a format string and one or more variables to substitute into this string while being formatted. It works in a manner similar to <code>printf</code> in C. In string interpolation, another <code>@sprintf</code> from <code>Printf</code> package is used.</p>
+<p>Strings are joined by <code>*</code>, unlike <code>+</code> in Python. As a result, <code>^</code> applied on a string indicates an implicit multiplication.</p>
+<p>Unicode characters in a string contains multiple bytes. Therefore, there are two ways to define the length of a string: (1) Number of bytes in string, <code>endof(str)</code>; (2) Number of characters in string, <code>length()</code>.</p>
+<p>There are several special types of string.</p>
+<ol style="list-style-type: decimal">
+<li><code>v&quot;&quot;</code> for version number, which can be compared.</li>
+<li><code>r&quot;&quot;</code> for regular expressions, which can be used for pattern matching.</li>
+<li><code>b&quot;&quot;</code> for byte array literal, which represents a string using <code>Uint8</code> values.</li>
+</ol>
+<h3 id="arrays">Arrays</h3>
+<p>An array is of parametric type: <code>Array{Type,Dimension}</code>. For example, <code>Array{Int64,2}</code> means a 2-D array containing values of type <code>Int64</code>. Additionally, there are short-hands for vectors and matrices: <code>Array{Type,1} == Vector{Type}</code> and <code>Array{Type,2} == Matrix{Type}</code>.</p>
+<p>The arrays are by default &#x201C;real&#x201D; arrays, meaning that the data is stored continuously in memory (<em>column-major</em>). This is in contrast to the list of lists in Python and vectors of vectors in C++. It is possible to create array of arrays in Julia, of course. However, the array would only contain the references to the underlying arrays.</p>
+<p>There are multiple ways to create an array,</p>
+<ol style="list-style-type: decimal">
+<li>Direct specification, e.g. <code>a=[1,2,3]</code>.</li>
+<li>Using some methods, e.g. <code>collect(range(...))</code></li>
+<li>List comprehension, e.g. <code>[i for i in 1:3]</code>. Multiple <code>for</code>&#x2019;s result in multi-D arrays.</li>
+</ol>
+<p>Note that due to the column-major storage, 1-D array is logically column vectors. Logically row vectors are essentially 1-by-N matrices. To create row vectors, separate the values by space instead of comma, e.g. <code>a=[1 2 3]</code>. Furthermore, a semicolon <code>;</code> indicates a new row, leading to a matrix, e.g. <code>a=[1 2 3;4 5 6]</code>.</p>
+<p>In the creation of an array, constraining the type is often helpful for the performance. Using typed comprehensions everywhere for explicitness and safety in production code is certainly a best practice. For example, use <code>a=Int64[1,2,3]</code> instead of <code>a=[1,2,3]</code>. When dealing with large arrays, it is better to indicate the final number of elements for pre-allocation using the <code>sizehint</code> method to improve the performance. The memory of a large array can be freed by setting the array to <code>nothing</code>.</p>
+<h3 id="dictionaries-and-enumerations">Dictionaries and enumerations</h3>
+<p>A dictionary is of parametric type: <code>Dict{Type_key,Type_value}</code>. It is created by by <code>Dict(key=&gt;val, ...)</code>, where <code>=&gt;</code> is a pair operator. All the keys must have the same type, and the same is true for the values. The types can be specified at creation. A good practice is to use immutable types for the key, e.g.&#xA0;a <code>Symbol</code> <a href="#fn6" class="footnoteRef" id="fnref6"><sup>6</sup></a>.</p>
+<p>Dictionaries are mutable. New key-value pairs can be appended to a dictionary without calling method like <code>update</code> in Python. Also, one can directly loop over keys, values, or key-value pairs of a dict. In Python, one need to call <code>iteritems</code> to loops over key-value pairs.</p>
+<p>Julia does not provide a standard enumeration type. However, there is a <code>@enum</code> macro that creates a type that behaves like a <code>Enum</code>, <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@enum EnumName[::BaseType] key[=val] ...</div></pre></td></tr></table></figure></p>
+<p>The data is stored as <code>Vector{Tuple{Symbol,Integer}}</code>.</p>
+<h3 id="tuples">Tuples</h3>
+<p>The type of a tuple is just a tuple of the types of the values it contains. Tuples are immutable, just like other languages. A tuple can be unpacked or deconstructed, e.g. <code>a, b = tuple1</code>. Notice that an error will not be raised if the left-hand side cannot take all the values of the tuple.</p>
+<p>Finally, note that there is a type <code>NamedTuples</code>, which can be considered an ordered dictionary. Its underlying structure consists of a tuple of all the keys as <code>Symbol</code> and a tuple of all the values.</p>
+<h2 id="control-flow">Control flow</h2>
+<h3 id="basic-blocks">Basic Blocks</h3>
+<p>One thing to be kept in mind is that, everything is an expression that returns a value. That means, structs like <code>if-else-end</code> and <code>try-except-end</code> all return a value, which can be assigned to a variable.</p>
+<p>The familiar <code>if-elseif-else-end</code> syntax is used for conditionals. There are two short-hand versions: (1) Ternary operators: <code>a ? b : c</code>, and (2) Short-circuit evaluation <a href="#fn7" class="footnoteRef" id="fnref7"><sup>7</sup></a>,</p>
+<ol style="list-style-type: decimal">
+<li><code>cond &amp;&amp; expr</code>, if cond=true, do expr</li>
+<li><code>cond || expr</code>, if cond=false, do expr</li>
+</ol>
+<p>Like Python, Julia has no switch/case statement, and the language provides no built-in pattern matching</p>
+<p>The familiar <code>while-end</code> and <code>for-end</code> syntaxes are used for loops, which can be combined with <code>break</code> and <code>continue</code>. For the <code>for</code> loop, the iteration can be done on a range, a string, an array, or any other iterable collection, just like Python. Furthermore, <code>enumerate</code> also exists in Julia. One thing special, though, is that multiple <code>for</code> loops can be combined into one block - this is how multi-for list comprehension works. Note that <code>for</code> loops are typically <em>faster</em> than vectorization in languages like Python. That is because (1) in Python, the implementation of vectorization (e.g.&#xA0;by Numpy) is faster than naive loops generated by the interpreter; (2) in Julia, vectorization requires extra memory allocation and is thus slower than naive loops. Nevertheless, list comprehension can be far slower than the <code>for</code> loops and vectorizations.</p>
+<p>The exceptions can be handled using the familiar <code>try-catch-finally-end</code> construct. However, the <code>try-catch</code> should not be used in performance bottlenecks. Whenever possible, all possible exceptions should be handled via conditionals. There are 24 predefined exceptions that Julia can generate, as of writing. These exceptions can be <code>throw</code>&#x2019;d to interrupt the execution. User-defined exceptions can be created by deriving from the base type, <code>Exception</code>. Finally, Exceptions with error/warning/info messages are handled by the <code>error</code>, <code>warn</code>, and <code>info</code> methods.</p>
+<h3 id="scopes">Scopes</h3>
+<p>The <code>for</code>, <code>while</code>, and <code>try</code> blocks (but not the <code>if</code> blocks) all introduce a new scope. There are several things to note.</p>
+<p>To create a new local binding for a variable, one should use the <code>let</code> block. This is similar to the <code>cell-var-from-loop</code> in Python discussed in a previous <a href="https://smanist.github.io/2018/04/19/Python-Linting/">article</a>, where a local variable is used in the definition of a function that would be used outside the current block.</p>
+<p>The <code>for</code> loops and comprehensions differ in the way they scope an iteration variable. When <code>i</code> is initialized before a <code>for</code> loop, after executing a <code>for</code> loop iterating on <code>i</code>, the variable <code>i</code> will be updated. However, this is <em>not true</em> for comprehension.</p>
+<h3 id="taskscoroutines">Tasks/Coroutines</h3>
+<p>Julia also supports the <code>yield</code> mechanism, like Python. This can done by the combination of <code>put!</code> and <code>take!</code> methods associated with the <code>Channel</code> type. There is also a more fundamental <code>Task</code> type to define the task to be executed by <code>put!</code> and <code>take!</code>. There is also a convenient <code>@task</code> macro for creating a task from a function. <a href="#fn8" class="footnoteRef" id="fnref8"><sup>8</sup></a></p>
+<p>Finally, note that currently Julia tasks are not scheduled to run on separate CPU cores (yet?).</p>
+<h2 id="functions">Functions</h2>
+<p>There are several ways for creating a function:</p>
+<ol style="list-style-type: decimal">
+<li>Code block of <code>function-end</code></li>
+<li>One-liner: function(variables) = expression</li>
+<li>Anonymous function: function = variables -&gt; expression</li>
+</ol>
+<p>When the performance is important, try to use named functions instead of anonymous ones, because calling anonymous functions involves a huge overhead. Anonymous functions are mostly used when passing a function as an argument to another function, or as output of a function. That latter case is related to <a href="https://docs.julialang.org/en/v1.0/devdocs/functions/#Closures-1" target="_blank" rel="noopener">closures</a>.</p>
+<p>The input and output of a function are essentially specified using tuples. There are three types of arguments: (1) Normal arguments; (2) Optional positional arguments; (3) Optional keyword arguments. A typical arglist would be <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">func(arg, pos_arg=val1; kw_arg=val2)</div></pre></td></tr></table></figure></p>
+<p>Only the first two types of arguments, the positional ones, are considered in the multiple dispatch mechanism. The optional keyword arguments are mainly introduced for code clarity. The last positional argument can be &#x201C;spliced&#x201D;: <code>arg...</code>, meaning that it would take all the extra positional arguments into one tuple. Note that the splice operator <code>...</code>, or splat, can be also used to pass an array to a function as individual arguments rather than an array as a whole. This is similar to the <code>*</code> operator in Python.</p>
+<p>It is important to realize that in Julia, all the arguments to functions (with the exception of plain data such as numbers and chars) are passed by reference. Their values are not copied when they are passed, which means they can be changed from inside the function, and the changes will be visible to the calling code.</p>
+<p>Higher-order function in Julia just works like that in Python. There are methods like <code>map</code>, <code>filter</code>, and <code>broadcast</code>. Note that the short-hand for broadcast is the dot <code>.</code>. This is the underlying mechanism for <em>element-wise</em> operations in arrays, such as <code>.*</code>. Also, wise applications of the dot operator can avoid extra memory allocations in vectorized loops, or making a devectorized loop look like a vectorized one - See example #6 <a href="http://www.stochasticlifestyle.com/7-julia-gotchas-handle/" target="_blank" rel="noopener">here</a>.</p>
+<p>Here are some general tips for writing performant functions/program:</p>
+<ol start="0" style="list-style-type: decimal">
+<li>Refrain from using global variables. If unavoidable, make them constant, or at least annotate the types.</li>
+<li>Split the complete program in functions, <em>small</em> functions, that work on local variables.</li>
+<li>Types should be stable: Avoid changing the types of variables during execution.</li>
+<li>Types could be inferred: Always type-annotate the arguments using concrete types or type unions.</li>
+<li>The return type should only depend on the types of the arguments.</li>
+<li>Avoid using the splat operator for dynamic lists of keyword arguments.</li>
+</ol>
+<h1 id="advanced-topics">Advanced Topics</h1>
+<p>Two advanced topics in Julia are briefly touched here and will be investigated more in the future.</p>
+<h2 id="calling-other-languages-from-julia">Calling other languages from Julia</h2>
+<h3 id="shell">Shell</h3>
+<p>Julia offers an efficient shell integration through the <code>run</code> function, which creates an object of type <code>Cmd</code> that is defined by enclosing a command string in backticks <code>`</code>. Julia forks commands as child processes from the Julia process. The <code>Cmd</code> object is not executed immediately. It can be run, connected to other commands via pipes, and read or write to it. The pipe operator <code>|&gt;</code> can be used to redirect the output of a <code>Cmd</code> as the input to the following <code>Cmd</code>, just like that in shell environment <a href="#fn9" class="footnoteRef" id="fnref9"><sup>9</sup></a>.</p>
+<h3 id="c-and-fortran">C and Fortran</h3>
+<p>Julia&#x2019;s LLVM compiler generates native code, the C functions can be called directly by Julia without any glue code. Calling a C function from Julia has exactly the same overhead as calling the same function from C code itself. However, care should be taken when dealing with arguments. First, one needs to work with pointer types, i.e.&#xA0;a native pointer Ptr{T} representing the memory address for a variable of type T. Second, the data consists of bits, e.g.&#xA0;Int8, Uint8, Int32, Float64, Bool, and Char, are considered <code>bitstype</code>. These will be viewed as contiguous byte arrays from C. The calling basically takes the following form, <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">result = ccall( (:function, &quot;library&quot;), return_type, (tuple_of_argument_types,), arguments)</div></pre></td></tr></table></figure></p>
+<p>Arguments to C functions are, in general, automatically converted, and the returned values in C types are also converted to Julia types. Arrays of Booleans are handled differently in C and Julia and cannot be passed directly, so they must be manually converted. The <code>ccall</code> function will also automatically ensure that all of its arguments will be preserved from garbage collection until the call returns.</p>
+<p>Calling Fortran functions is similar. Just note that all inputs must be passed by reference. The support for C++ is more complex, see packages like <a href="https://github.com/Keno/Cxx.jl" target="_blank" rel="noopener">Cxx</a> and <a href="https://github.com/JuliaInterop/CxxWrap.jl" target="_blank" rel="noopener">CxxWrap</a>.</p>
+<h3 id="python">Python</h3>
+<p>Calling Python from Julia is done easily using the <code>PyCall</code> package. With the <code>@pyimport</code> macro, one can easily import any Python library, whose functions are called with the familiar dot notation.</p>
+<h2 id="parallel-computing">Parallel Computing</h2>
+<p>Julia&#x2019;s model for building a large parallel application works by means of a global distributed address space. This means that you can hold a reference to an object that lives on another machine participating in a computation. These references are easily manipulated and passed around between machines, making it simple to keep track of what&#x2019;s being computed where. Also, machines can be added in mid computation when needed.</p>
+<p>Besides manually receiving and sending messages between processes, or workers, Julia also provides some useful wrappers.</p>
+<h3 id="parallel-macro">Parallel macro</h3>
+<p>The <code>@parallel</code> macro acts on a <code>for</code> loop, splitting the range, and distributing it to each process. It optionally takes a &#x201C;reducer&#x201D; as its first argument. If a reducer is specified, the results from each remote procedure will be aggregated using the reducer.</p>
+<p>If the computational task is to apply a function to all elements in some collection, the parallel map operation can be applied using the <code>pmap</code> function <code>pmap(f, coll)</code>. It applies a function on each element of a collection in parallel, while preserving the order of the collection in the result.</p>
+<h3 id="distributed-array">Distributed array</h3>
+<p>When computations have to be done on a very large array (or arrays), the array can be distributed, so that each process works in parallel on a different part of the array. In this way, we can make use of the memory resources of multiple machines, and allow the manipulation of arrays that would be too large to fit on one machine.</p>
+<p>The specific data type used here is called a distributed array or <code>DArray</code>; most operations behave exactly as on the normal Array type, so the parallelism is invisible. With <code>DArray</code>, each process has local access to just a part of the data, and no two processes share the same data.</p>
+<h1 id="more-topics-for-later">More Topics for Later</h1>
+<p>There are yet many more topics to talk about in Julia, e.g.</p>
+<ol style="list-style-type: decimal">
+<li>Packages: Julia has a built-in package system with <code>git</code> capability.</li>
+<li>Graphics: Plotting capability is typically enabled by interfacing to external packages, e.g.&#xA0;Matplotlib from Python.</li>
+<li>Benchmark: There are some tools/packages for benchmarking, which are critical for developing real performant Julia code.</li>
+<li>Performance notes: The whole book &#x201C;Julia High Performance&#x201D; by Avik Sengupta is devoted to this topic.</li>
+</ol>
+<p>These topics (and more) will probably be discussed in future posts.</p>
+<div class="footnotes">
+<hr>
+<ol>
+<li id="fn1"><p>It is also possbile to <a href="https://cython.readthedocs.io/en/latest/src/userguide/pypy.html" target="_blank" rel="noopener">combine Cython and PyPy</a> for more acceleration. Yet, that requires tweaking the original code even more.<a href="#fnref1">&#x21A9;</a></p></li>
+<li id="fn2"><p>This initial environment also has an influence on the design of Julia - maybe that is why arrays are column-majored instead of row-majored as in <code>Numpy</code>.<a href="#fnref2">&#x21A9;</a></p></li>
+<li id="fn3"><p>Julia provides <a href="https://docs.julialang.org/en/v1.0/devdocs/reflection/#Intermediate-and-compiled-representations-1" target="_blank" rel="noopener">several methods</a> for inspecting the code generated at each stage: <code>code_lowered</code>, <code>code_typed</code>, <code>code_warntype</code>, <code>code_llvm</code>, <code>code_native</code>.<a href="#fnref3">&#x21A9;</a></p></li>
+<li id="fn4"><p>Note that there is a subtle difference between polymorphism and <a href="https://en.wikipedia.org/wiki/Function_overloading" target="_blank" rel="noopener">overloading</a>. Both polymorphic and overloaded methods seem to be &#x201C;methods of the same name that behave differently depending on the arguments and their types.&#x201D; The difference is that the choice of overloaded methods is done in the <em>compilation</em>, while the choice of polymorphic methods is done in the <em>run-time</em>. An example in C++: methods of the same name in the same class are overloaded; virtual functions inherited between classes are polymorphic. Nevertheless, in Julia documentation, it seems the two concepts are not strictly differentiated.<a href="#fnref4">&#x21A9;</a></p></li>
+<li id="fn5"><p>An often-noted difference between macros in Julia and languages like C and C++ is that, macros in the latter are expanded before any actual parsing or interpretation occurs.<a href="#fnref5">&#x21A9;</a></p></li>
+<li id="fn6"><p>Note that the syntax <code>[key=&gt;val, ...]</code> now produces an array of <code>Pairs</code> and the syntax <code>{key=&gt;val, ...}</code> is deprecated.<a href="#fnref6">&#x21A9;</a></p></li>
+<li id="fn7"><p>For non-short-circuit Boolean evaluations, use operators <code>&amp;</code> and <code>|</code>.<a href="#fnref7">&#x21A9;</a></p></li>
+<li id="fn8"><p>Note that there was a <code>produce</code>-<code>consume</code> method combination, but they are already deprecated.<a href="#fnref8">&#x21A9;</a></p></li>
+<li id="fn9"><p>The pipe operators <code>|&gt;</code> works not only with <code>Cmd</code> objects, but also other functions. Essentially it means passing preceding object as the argument to the following function.<a href="#fnref9">&#x21A9;</a></p></li>
+</ol>
+</div>
+
+  	</div>
+	  
+	  <div class="article-tags tags">
+      
+        <a href="/tags/julia/">julia</a>
+      
+	  </div>
+    
+	</section>
+	
+		<section id="comments">
+			<div id="disqus_thread"></div>
+		</section>
+	
+</article>
+
+      </div>
+      <aside class='l_side'>
+        
+  <section class='m_widget about'>
+
+<img class='avatar waves-image' src='/images/avatar.jpeg' />
+
+<div class='header'>Smanist</div>
+<div class='content'>
+<div></div>
+</div>
+</section>
+
+  <section class='m_widget categories'>
+<div class='header'>Categories</div>
+<div class='content'>
+    
+    <ul class="entry">
+    
+        <li><a class="flat-box" href="/categories/coding/"><div class='name'>coding</div><div class='badget'>14</div></a></li>
+    
+        <li><a class="flat-box" href="/categories/digest/"><div class='name'>digest</div><div class='badget'>14</div></a></li>
+    
+        <li><a class="flat-box" href="/categories/music/"><div class='name'>music</div><div class='badget'>1</div></a></li>
+    
+        <li><a class="flat-box" href="/categories/pieces/"><div class='name'>pieces</div><div class='badget'>10</div></a></li>
+    
+        <li><a class="flat-box" href="/categories/plan/"><div class='name'>plan</div><div class='badget'>3</div></a></li>
+    
+    </ul>
+    
+</div>
+</section>
+
+  
+<div class="m_widget tagcloud">
+    <div class="header">Tags</div>
+    <div class='content'>
+        <a href="/tags/alien/" style="font-size: 14px; color: #808080">alien</a> <a href="/tags/bayesian/" style="font-size: 14px; color: #808080">bayesian</a> <a href="/tags/career/" style="font-size: 18.5px; color: #202020">career</a> <a href="/tags/cas/" style="font-size: 14px; color: #808080">cas</a> <a href="/tags/chrome/" style="font-size: 14px; color: #808080">chrome</a> <a href="/tags/communication/" style="font-size: 14px; color: #808080">communication</a> <a href="/tags/cpp/" style="font-size: 14px; color: #808080">cpp</a> <a href="/tags/emacs/" style="font-size: 17px; color: #404040">emacs</a> <a href="/tags/etymology/" style="font-size: 14px; color: #808080">etymology</a> <a href="/tags/faculty/" style="font-size: 17px; color: #404040">faculty</a> <a href="/tags/fonts/" style="font-size: 14px; color: #808080">fonts</a> <a href="/tags/food/" style="font-size: 18.5px; color: #202020">food</a> <a href="/tags/geology/" style="font-size: 14px; color: #808080">geology</a> <a href="/tags/glacier/" style="font-size: 14px; color: #808080">glacier</a> <a href="/tags/google/" style="font-size: 14px; color: #808080">google</a> <a href="/tags/hexo/" style="font-size: 18.5px; color: #202020">hexo</a> <a href="/tags/hg/" style="font-size: 14px; color: #808080">hg</a> <a href="/tags/history/" style="font-size: 15.5px; color: #606060">history</a> <a href="/tags/julia/" style="font-size: 15.5px; color: #606060">julia</a> <a href="/tags/katex/" style="font-size: 14px; color: #808080">katex</a> <a href="/tags/kriging/" style="font-size: 20px; color: #000">kriging</a> <a href="/tags/language-visualization/" style="font-size: 14px; color: #808080">language, visualization</a> <a href="/tags/latex/" style="font-size: 14px; color: #808080">latex</a> <a href="/tags/life/" style="font-size: 17px; color: #404040">life</a> <a href="/tags/lint/" style="font-size: 14px; color: #808080">lint</a> <a href="/tags/machine-learning/" style="font-size: 18.5px; color: #202020">machine learning</a> <a href="/tags/mathjax/" style="font-size: 14px; color: #808080">mathjax</a> <a href="/tags/maxima/" style="font-size: 14px; color: #808080">maxima</a> <a href="/tags/mechanics/" style="font-size: 18.5px; color: #202020">mechanics</a> <a href="/tags/multi-objective/" style="font-size: 14px; color: #808080">multi-objective</a> <a href="/tags/numerical/" style="font-size: 17px; color: #404040">numerical</a> <a href="/tags/optimization/" style="font-size: 17px; color: #404040">optimization</a> <a href="/tags/python/" style="font-size: 15.5px; color: #606060">python</a> <a href="/tags/rnn/" style="font-size: 14px; color: #808080">rnn</a> <a href="/tags/rosetta/" style="font-size: 15.5px; color: #606060">rosetta</a> <a href="/tags/shell/" style="font-size: 18.5px; color: #202020">shell</a> <a href="/tags/solver/" style="font-size: 14px; color: #808080">solver</a> <a href="/tags/ssh/" style="font-size: 14px; color: #808080">ssh</a> <a href="/tags/surrogate-model/" style="font-size: 20px; color: #000">surrogate model</a> <a href="/tags/symbols/" style="font-size: 14px; color: #808080">symbols</a> <a href="/tags/sympy/" style="font-size: 14px; color: #808080">sympy</a> <a href="/tags/the-pillows/" style="font-size: 14px; color: #808080">the pillows</a> <a href="/tags/time-series/" style="font-size: 14px; color: #808080">time series</a> <a href="/tags/wsl/" style="font-size: 17px; color: #404040">wsl</a> <a href="/tags/xming/" style="font-size: 15.5px; color: #606060">xming</a> <a href="/tags/zoology/" style="font-size: 18.5px; color: #202020">zoology</a>
+    </div>
+</div>
+
+
+
+  <section class='m_widget friendly-links'>
+<div class='header'>Links</div>
+<div class='content'>
+    <ul class="entry">
+    
+        <li><a class="flat-box" target="_blank" href="https://www.researchgate.net/profile/Daning_Huang">
+            <div class='name'>My ResearchGate</div>
+        </a></li>
+    
+        <li><a class="flat-box" target="_blank" href="https://www.linkedin.com/in/daning-huang-73058180/">
+            <div class='name'>My LinkedIn</div>
+        </a></li>
+    
+        <li><a class="flat-box" target="_blank" href="https://pswpswpsw.github.io">
+            <div class='name'>Friend P</div>
+        </a></li>
+    
+        <li><a class="flat-box" target="_blank" href="https://anish-lu-yihe.github.io">
+            <div class='name'>Tomo L</div>
+        </a></li>
+    
+        <li><a class="flat-box" target="_blank" href="https://ericzhng.github.io/">
+            <div class='name'>Buddy Z</div>
+        </a></li>
+    
+    </ul>
+</div>
+</section>
+
+      </aside>
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+  </div>
+  <footer id="footer" class="clearfix">
+
+	<div class="social-wrapper">
+  	
+      
+        <a href="https://github.com/smanist" class="social github"
+          target="_blank" rel="external">
+          <span class="icon icon-github"></span>
+        </a>
+      
+        <a href="/atom.xml" class="social rss"
+          target="_blank" rel="external">
+          <span class="icon icon-rss"></span>
+        </a>
+      
+    
+  </div>
+  
+  <div>Theme derived from <a href='https://github.com/stkevintan/hexo-theme-material-flow' class="codename">MaterialFlow</a>, Banner figures from <a href='https://wall.alphacoders.com/' class="codename">WallpaperAbyss</a></div>
+  
+</footer>
+
+
+  <script>setLoadingBarProgress(80);</script>
+  
+<script>
+  var disqus_shortname = 'smanist';
+  
+  var disqus_url = 'http://smanist.github.io/2018/12/21/Notes-on-Julia/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src='//cdn.bootcss.com/node-waves/0.7.5/waves.min.js'></script>
+<script src="//cdn.bootcss.com/scrollReveal.js/3.3.2/scrollreveal.min.js"></script>
+<script src="/js/jquery.fitvids.js"></script>
+<script>
+	var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+	var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+	var ALGOLIA_API_KEY = "";
+	var ALGOLIA_APP_ID = "";
+	var ALGOLIA_INDEX_NAME = "";
+  var AZURE_SERVICE_NAME = "";
+  var AZURE_INDEX_NAME = "";
+  var AZURE_QUERY_KEY = "";
+  var BAIDU_API_ID = "";
+  var SEARCH_SERVICE = "hexo";
+  var ROOT = "/"||"/";
+  if(!ROOT.endsWith('/'))ROOT += '/';
+</script>
+<script src="/js/search.js"></script>
+<script src="/js/app.js"></script>
+
+
+  <script>setLoadingBarProgress(100);</script>
+</body>
+</html>
