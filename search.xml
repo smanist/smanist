@@ -3258,6 +3258,32 @@ Our pride.</p>
         
     </entry>
     
+    <entry>
+      <title><![CDATA[Meeting with Program Managers]]></title>
+      <url>http://smanist.github.io/1020/05/03/Meeting-with-program-managers/</url>
+      <content type="html"><![CDATA[<p>Talking to a special kind of people.</p>
+<a id="more"></a>
+<p>Based on a talk by JM.</p>
+<p>Finally, the new font in emacs is set by <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(set-face-attribute &apos;default nil :font [FONTNAME])</div></pre></td></tr></table></figure></p>
+]]></content>
+      
+        <categories>
+            
+            <category> digest </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> faculty </tag>
+            
+            <tag> career </tag>
+            
+        </tags>
+        
+    </entry>
+    
   
   
 </search>
