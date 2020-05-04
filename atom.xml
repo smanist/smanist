@@ -369,9 +369,9 @@
       <category term="digest" scheme="http://smanist.github.io/categories/digest/"/>
     
     
-      <category term="optimization" scheme="http://smanist.github.io/tags/optimization/"/>
-    
       <category term="mechanics" scheme="http://smanist.github.io/tags/mechanics/"/>
+    
+      <category term="optimization" scheme="http://smanist.github.io/tags/optimization/"/>
     
       <category term="numerical" scheme="http://smanist.github.io/tags/numerical/"/>
     
